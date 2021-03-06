@@ -1,0 +1,43 @@
+
+/* The styles for the header */
+.jumbotron {
+    position: relative;
+    height: 350px;
+    padding: 20px;
+    margin: 0;
+    color: rgb(250, 246, 246);
+    background: rgb(151, 147, 147);
+    background-image: url("../Images/background.jpg");
+    background-attachment: fixed;
+    background-position: bottom center;
+    background-size: cover;
+    
+}
+
+.jumbotrol h1{
+    color: white;
+}
+/* .jumbotron::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(214, 205, 205, 0.563);
+} */
+
+.panel-heading {
+  /* Chrome/Opera/Safari */
+    color: white;
+    background-color: rgb(230, 143, 96);
+    height: 50px;
+    padding: 10px;
+    margin: 0;
+}
+
+#bubble {
+    
+    display: flex;
+    justify-content: center;
+}
