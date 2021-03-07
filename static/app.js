@@ -1,38 +1,42 @@
-function unpack(rows, index) {
-    return rows.map(function (row) {
-        return row[index];
-    });
-}
-
 // Retrieve data from local JSON file and build charts
-function charts() {
+function charts(sample) {
     d3.json("data/samples.json").then((data) => {
-        console.log(data);
+        let samples = data.samples;
+        let samplesarray = samples.filter(sampleobject =>
+            sampleobject.id == sample);
+        let sampleID = samplesarray[0]
 
-        let otu_ids = unpack(data.samples, 'otu_ids');
-        console.log(otu_ids);
-
-        let otu_labels = unpack(data.samples, 'otu_labels');
-        console.log(otu_labels);
-
-        let sample_values = unpack(data.samples, 'sample_values');
-        console.log(sample_values);
+        let otu_ids = sampleID.otu_ids;
+        let otu_labels = sampleID.otu_labels;
+        let sample_values = sampleID.sample_values;
 
         // Bar chart - horizontal ***********************************
         let bar = [
             {
-                y: otu_ids.slice(0, 10).map(otuIDs => `OTU ${otuIDs}`).reverse(),
+                y: otu_ids.slice(0, 10).map(IDs => `OTU ${IDs}`).reverse(),
                 x: sample_values.slice(0, 10).reverse(),
                 text: otu_labels.slice(0, 10).reverse(),
                 type: "bar",
-                orientation: "h"
-
+                colorscale: 'YlOrRd',
+                orientation: "h",
+                marker: {
+                    color: otu_ids,
+                    opacity: 0.6,
+                    line: {
+                        color: 'orange',
+                        width: 1.5
+                    }
+                }
             }
         ];
 
         let barLayout = {
-            title: "Top 10 Bellybutton Bacteria Cultures",
-            margin: { t: 50, r: 100 }
+            title: "Top 10 Bacteria Cultures Found",
+            width: 800,
+            height: 500,
+            margin: { t: 100, l: 100 },
+            barmode: 'stack',
+            xaxis: { title: "Sample Value" },
         };
 
         Plotly.newPlot("bar", bar, barLayout);
@@ -52,44 +56,65 @@ function charts() {
         ];
 
         var bubbleLayout = {
-            margin: { t: 0 },
+            width: 1000,
+            height: 600,
+            margin: { t: 100, l: 100 },
             xaxis: { title: "OTU ID" },
+            yaxis: { title: "Sample Value" },
             hovermode: "closest",
+            title: 'OTU IDs are represented by bubble color while the magnitude of sample values is represented by bubble size.'
         };
 
         Plotly.newPlot("bubble", bubble, bubbleLayout);
 
-    })
-};
+    });
+}
+
+
+// Dropdown function in response to user selection *********************
 
 function dropDown() {
     // Grab a reference to the dropdown select element
     let selector = d3.select("#selDataset");
 
-    // Use the list of sample names to populate the select options
-    d3.json("samples.json").then((data) => {
+    // Use the list of sample names to populate the dropdown
+    d3.json("data/samples.json").then((data) => {
         let names = data.names;
-        names.forEach((name) => {
+        names.forEach((sample) => {
             selector
                 .append("option")
-                .text(name)
-                .property("value", name);
+                .text(sample)
+                .property("value", sample);
         });
 
-        // Use the first name from the list to build the initial plots
-        const initial = names[0];
-        charts(initial);
-        // buildMetadata(initial);
+        // Use the first ID from the list to build the initial plots
+        const firstID = names[0];
+        charts(firstID);
+        demoBox(firstID)
     });
 }
 
-function optionChanged(newName) {
-    // Return new selection data
-    charts(newName);
-    // buildMetadata(newName);
+function optionChanged(newID) {
+    // Return new data each time a new ID is selected
+    charts(newID);
+    demoBox(newID)
 }
 
-
-// Initialize the dashboard
+// Initialize the dropdown
 dropDown();
 
+// Demographics Box ***************************************************
+function demoBox(sample) {
+    d3.json("data/samples.json").then((data) => {
+        let boxData = data.metadata;
+        let samplesarray = boxData.filter(sampleobject =>
+            sampleobject.id == sample);
+        let sampleID = samplesarray[0]
+
+        let panel = d3.select("#sample-metadata");
+        panel.html("");
+        Object.entries(sampleID).forEach(([key, value]) => {
+            panel.append("h6").text(`${key}: ${value}`);
+        });
+    });
+};
