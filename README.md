@@ -13,6 +13,6 @@ To view the JavaScript code: [JavaScript Code](static/bonus.js)<br>
 to view the CSS code: [CSS Code](static/styleSheet.css)<br>
 To view the HTML code: [HTML Code](index.html)</p>
 
-<p align="center"><img width="1362" height="auto" src="Images/pageview.PNG"></p>
+<p align="center"><img width="950" height="auto" src="Images/pageview.PNG"></p>
 </body>
 </html>
