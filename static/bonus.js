@@ -1,5 +1,5 @@
 
-// Retrieve data from local JSON file and build charts
+// Retrieve data from local JSON file, declare variables, and build charts
 function charts(sample) {
     d3.json("data/samples.json").then((data) => {
         let samples = data.samples;
@@ -80,7 +80,7 @@ function charts(sample) {
         Plotly.newPlot("gauge", gauge, gaugeLayout);
 
         // Bubble chart ***********************************************
-        var bubble = [
+        let bubble = [
             {
                 x: otu_ids,
                 y: sample_values,
@@ -93,7 +93,7 @@ function charts(sample) {
             }
         ];
 
-        var bubbleLayout = {
+        let bubbleLayout = {
             width: 1000,
             height: 600,
             margin: { t: 100, l: 100 },
