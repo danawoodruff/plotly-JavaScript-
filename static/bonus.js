@@ -45,8 +45,15 @@ function charts(sample) {
             height: 500,
             margin: { t: 100, l: 70 },
             barmode: 'stack',
-            xaxis: { title: "Sample Value" },
-            paper_bgcolor: 'rgba(0,0,0,0)'
+            xaxis: { 
+                title: "Sample Value",
+                showline: true,
+                autotick: true,
+                ticks: 'outside',
+                tickwidth: 1,
+            },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)'
         };
 
         Plotly.newPlot("bar", bar, barLayout);
@@ -97,10 +104,13 @@ function charts(sample) {
             width: 1000,
             height: 600,
             margin: { t: 100, l: 100 },
-            xaxis: { title: "OTU ID" },
+            xaxis: { 
+                title: "OTU ID",
+            },
             yaxis: { title: "Sample Value" },
             hovermode: "closest",
             paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
             title: 'OTU IDs are represented by bubble color while the magnitude of sample values is represented by bubble size.'
         };
 
