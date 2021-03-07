@@ -10,7 +10,7 @@ Plotly, JavaScript, HTML, and CSS, and D3.js are used to create interactive char
 Once the user has selected a test subject the, at a maximum, top ten bacterium found in the test subject's bellybutton will be displayed as a bar and a bubble chart. The wash frequency is displayed as a gauge chart to allow the user to determine whether there is a correlation between bathing and bacteria volume.</p>
 
 To view the JavaScript code: [JavaScript Code](static/bonus.js)<br>
-To view the HTML code: [HTML Code](index.html)</p><br>
+To view the HTML code: [HTML Code](index.html)</p>
 To view the CSS code: [CSS Code](static/styleSheet.css)<br>
 
 <p align="center"><img width="1362" height="auto" src="Images/pageview.PNG"></p>
