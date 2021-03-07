@@ -17,15 +17,6 @@
 .jumbotrol h1{
     color: white;
 }
-/* .jumbotron::before {
-    content: "";
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    background-color: rgba(214, 205, 205, 0.563);
-} */
 
 .panel-heading {
   /* Chrome/Opera/Safari */
@@ -37,7 +28,11 @@
 }
 
 #bubble {
-    
     display: flex;
     justify-content: center;
+}
+
+#gauge {
+    display: flex;
+    justify-content: right;
 }
