@@ -11,6 +11,7 @@ Once the user has selected a test subject the, at a maximum, top ten bacterium f
 
 To view the JavaScript code: [JavaScript Code](static/bonus.js)<br>
 To view the HTML code: [HTML Code](index.html)</p><br>
+To view the CSS code: [CSS Code](static/styleSheet.css)<br>
 
 <p align="center"><img width="1362" height="auto" src="Images/pageview.PNG"></p>
 </body>
